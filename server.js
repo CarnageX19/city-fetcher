@@ -14,8 +14,9 @@ const accessKey = process.env.UNSPLASH_API_KEY;
 app.get('/photos',async (req,res)=>{
     const city = req.query.city || "bengaluru";
 
-    const unsplashUrl = `https://api.unsplash.com/search/photos?query=${city}&client_id=${accessKey}&orientation=portrait&per_page=1`
+    console.log(`Recieved image query for ${city}`)
 
+    const unsplashUrl = `https://api.unsplash.com/search/photos?query=${city}&client_id=${accessKey}&orientation=portrait&per_page=1`
     const response = await fetch(unsplashUrl);
     const result = await response.json();
     const imageUrl = result.results[0].urls.regular;

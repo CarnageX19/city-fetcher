@@ -10,6 +10,14 @@ app.use(cors({
     origin:frontendUrl
 }));
 
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (origin !== frontendUrl) {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+  next();
+});
+
 const port = process.env.PORT;
 const accessKey = process.env.UNSPLASH_API_KEY;
 

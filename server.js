@@ -5,11 +5,13 @@ const cors = require('cors');
 
 dotenv.config();
 
-app.use(cors());
+const frontendUrl = process.env.WHITELIST;
+app.use(cors({
+    origin:frontendUrl
+}));
 
 const port = process.env.PORT;
 const accessKey = process.env.UNSPLASH_API_KEY;
-
 
 app.get('/photos',async (req,res)=>{
     const city = req.query.city || "bengaluru";
